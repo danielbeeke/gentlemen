@@ -1,0 +1,24 @@
+---
+layout: default
+title: Your New Jekyll Site
+---
+
+<div id="home">
+  <h1>Blog Posts</h1>
+
+  <div id="songs">
+  </div>
+
+  <div class="posts">
+    {% for post in site.posts %}
+      <article class="news">
+        <h3>{{ post.title }}</h3>
+        <div class="meta">
+          <span class="date">{{ post.date | date_to_string }}</span>
+          <span class="author">{{ post.author }}</span>
+        </div>
+        <p>{{ post.content }}</p>
+      </article>
+    {% endfor %}
+  </div>
+</div>
