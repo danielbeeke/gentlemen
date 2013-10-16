@@ -5,6 +5,7 @@
             waveformImageUrl: '',
             backgroundColor: 'transparent',
             foregroundColor: 'black',
+            resizeDelay: 100
         };
 
     function Plugin( element, options ) {
@@ -39,7 +40,7 @@
                         that.updateSize(el, options)
                         that.setInterpolateData(el, options)
                         that.redraw(el, options)
-                    }, 200)
+                    }, options.resizeDelay)
                 })
             }
         },
