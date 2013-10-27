@@ -4,7 +4,7 @@ title: Your New Jekyll Site
 ---
   <header id="main-header">
     <div id="logo">
-      <img src="/images/logo.png">
+      <img src="images/logo.png">
     </div>
 
     <nav id="main-menu">
@@ -22,7 +22,7 @@ title: Your New Jekyll Site
     {% for post in site.posts %}
       <article class="blog-item">
         <div class="meta">
-          <div class="author"><img src="/images/authors/{{ post.author | handleize }}.jpg" /></div>
+          <div class="author"><img src="images/authors/{{ post.author | handleize }}.jpg" /></div>
 
           <div class="date-wrapper">
             <span class="day">{{ post.date | date: "%d" }}</span>
