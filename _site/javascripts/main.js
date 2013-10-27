@@ -40,6 +40,8 @@
           $('a.innerlink[href="' + id + '"]').addClass('active')
           $(id).addClass('active')
         }
+
+        return false
       })
     },
     initScroller: function () {
@@ -51,9 +53,6 @@
           // Only auto collapse menu on mobile.
           if ($(window).width() < 480 && $('body').hasClass('expanded-menu')) {
             $('body').removeClass('expanded-menu').addClass('collapsed-menu')
-            $('#blogs').css({
-              marginBottom: $(window).height()
-            })
           }
         }
         else {
