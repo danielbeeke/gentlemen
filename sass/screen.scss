@@ -12,13 +12,8 @@
 $gentleblue: #2d3e6a;
 $animationTime: .6s;
 
-$grids: 4;
-$gutters: 0;
-
 // Small tablet
 $smallTabletWidth: 480px;
-$smallTabletGrid: 3 3 1 6;
-$grids: add-grid($smallTabletGrid at $smallTabletWidth);
 
 $output: 'float';
 
@@ -54,7 +49,7 @@ h2 {
   z-index: 4;
   position: relative;
 
-  @include grid-span(4);
+  width: 100%;
   background: url(../images/bgnoise_lg.png);
   text-align: center;
 
@@ -68,7 +63,6 @@ h2 {
   // Small tablet
   @include breakpoint($smallTabletWidth) {
     max-width: 240px;
-    @include grid-span(2, 1, $smallTabletGrid);
     height: 100%;
   }
 }
@@ -204,18 +198,25 @@ body.sticky-menu {
   padding: 20px;
   padding-top: 20px;
   min-height: 100%;
-  position: relative;
+  position: absolute;
+  top: 0;
   background: url(../images/dark_wood.png);
   color: #ccc;
+  width: 100%;
+  max-height: 0px;
+  overflow: hidden;
   @include transition(all $animationTime);
   @include box-sizing(border-box);
+  @include box-shadow($shadow);
+
   .meta {
     margin-top: 100px;
     @include box-sizing(border-box);
     font-style: italic;
-    padding-right: 20px;
     text-align: center;
     color: black;
+    width: 60px;
+    position: absolute;
   }
 
   a:link, a:visited {
@@ -236,12 +237,12 @@ body.sticky-menu {
     @include opacity(1);
     z-index: 2;
     @include translateX(0);
+    position: relative;
+    max-height: 9999px;
   }
 
   // Mobile
-  @include grid-span(4);
-  .meta { @include grid-span(1, 1, 1 1 1 1); }
-  .content, .panel-title { @include grid-span(3, 2, 1 1 1 1); }
+  .content, .panel-title { width: auto; margin-left: 80px; }
 
   // Small tablet
   @include breakpoint($smallTabletWidth) {
@@ -249,15 +250,18 @@ body.sticky-menu {
     margin-right: -100% !important;
     max-width: 500px;
     padding-bottom: 0 !important;
-    @include grid-span(2, 3, $smallTabletGrid);
-    .meta { @include grid-span(1, 1, 1 6); }
-    .content, .panel-title { @include grid-span(1, 2, 1 6); }
+    // .meta { @include grid-span(1, 1, 1 6); }
+    // .content, .panel-title { @include grid-span(1, 2, 1 6); }
   }
 
   @include breakpoint(520px) {
     float: left;
     margin-left: 240px;
-    @include box-shadow($shadow);
+  }
+
+  @include breakpoint(max-width 740px) {
+    float: left;
+    margin-left: 0px;
   }
 }
 
@@ -265,9 +269,9 @@ body.sticky-menu {
   body.collapsed-menu {
     .panel {
       @include box-shadow($shadow);
-      @include grid-span(2, 1, 1 6 6);
-      .meta { @include grid-span(1, 1, 1 6); }
-      .content, .panel-title { @include grid-span(1, 2, 1 6); }
+      margin-left: 0;
+      // .meta { @include grid-span(1, 1, 1 6); }
+      // .content, .panel-title { @include grid-span(1, 2, 1 6); }
     }
 
     #main-menu ul.menu #switch-menu {
