@@ -25,6 +25,22 @@
         $('body').toggleClass('expanded-menu').toggleClass('collapsed-menu')
         return false
       })
+
+      $('a.innerlink').click(function () {
+        var id = $(this).attr('href')
+        $('.panel:not(' + id + ')').removeClass('active')
+
+        if ($(this).hasClass('active')) {
+          $('a.innerlink.active').removeClass('active')
+          $('a.innerlink[href="' + id + '"]').removeClass('active')
+          $(id).removeClass('active')
+        }
+        else {
+          $('a.innerlink.active').removeClass('active')
+          $('a.innerlink[href="' + id + '"]').addClass('active')
+          $(id).addClass('active')
+        }
+      })
     },
     initScroller: function () {
       $(window).scroll(function () {
@@ -33,7 +49,7 @@
             $('body').addClass('sticky-menu')
           }
           // Only auto collapse menu on mobile.
-          if ($(window).width() < 420 && $('body').hasClass('expanded-menu')) {
+          if ($(window).width() < 480 && $('body').hasClass('expanded-menu')) {
             $('body').removeClass('expanded-menu').addClass('collapsed-menu')
             $('#blogs').css({
               marginBottom: $(window).height()

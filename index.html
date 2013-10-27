@@ -10,15 +10,16 @@ title: Gentlemen
     <nav id="main-menu">
       <ul class="menu">
         <li><a href="#" id="switch-menu"><i class="fa fa-align-justify"></i></a></li>
+        <li><a class="innerlink btn active" href="#blogs"><i class="fa fa-file"></i> Blog</a></li>
         <li><a class="innerlink btn" href="#songs"><i class="fa fa-music"></i> Muziek</a></li>
-        <li><a class="innerlink btn" href="#blogs"><i class="fa fa-file"></i> Blog</a></li>
         <li><a class="innerlink btn" href="#tour"><i class="fa fa-bullhorn"></i> Optredens</a></li>
-        <li><a class="btn" href="#tour"><i class="fa fa-facebook"></i> Facebook</a></li>
+        <li><a class="btn" target="_blank" href="https://www.facebook.com/gentlemenmusicnl"><i class="fa fa-facebook"></i> Facebook</a></li>
       </ul>
     </nav>
   </header>
 
-  <div id="blogs" class="panel">
+  <div id="blogs" class="panel active">
+    <h2 class="panel-title">Blog</h2>
     {% for post in site.posts %}
       <article class="blog-item">
         <div class="meta">
@@ -36,4 +37,12 @@ title: Gentlemen
         </div>
       </article>
     {% endfor %}
+  </div>
+
+  <div id="songs" class="panel">
+    <h2 class="panel-title">Muziek</h2>
+  </div>
+
+  <div id="tour" class="panel">
+    <h2 class="panel-title">Optredens</h2>
   </div>

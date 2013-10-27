@@ -16,7 +16,7 @@ $grids: 4;
 $gutters: 0;
 
 // Small tablet
-$smallTabletWidth: 420px;
+$smallTabletWidth: 480px;
 $smallTabletGrid: 3 3 1 6;
 $grids: add-grid($smallTabletGrid at $smallTabletWidth);
 
@@ -45,11 +45,18 @@ h1, h2, h3, h4, h5 {
   margin: 10px 0;
 }
 
+h2 {
+  font-size: 4em;
+  font-style: italic;
+}
+
 #main-header {
+  z-index: 4;
+  position: relative;
+
   @include grid-span(4);
   background: url(../images/bgnoise_lg.png);
   text-align: center;
-  max-width: 400px;
 
   #logo {
     img {
@@ -60,6 +67,7 @@ h1, h2, h3, h4, h5 {
 
   // Small tablet
   @include breakpoint($smallTabletWidth) {
+    max-width: 240px;
     @include grid-span(2, 1, $smallTabletGrid);
     height: 100%;
   }
@@ -79,6 +87,7 @@ body.sticky-menu {
 }
 
 #main-menu {
+  z-index: 4;
   position: relative;
 
   ul.menu {
@@ -96,7 +105,7 @@ body.sticky-menu {
       border-bottom: 1px solid white;
       @include transition(background $animationTime, color $animationTime);
 
-      &:hover {
+      &:hover, &.active {
         background: white;
         color: $gentleblue;
       }
@@ -156,9 +165,10 @@ body.sticky-menu {
 @include breakpoint($smallTabletWidth) {
   // These selectors are needed for weight.
   #main-menu ul.menu #switch-menu {
-   position: absolute;
+   position: fixed;
+   z-index: 9;
    top: 0;
-   right: -40px;
+   left: 240px;
    width: 40px !important;
    @include opacity(1);
    @include transition(all $animationTime);
@@ -188,10 +198,13 @@ body.sticky-menu {
   }
 }
 
-#blogs {
-  max-width: 400px;
+.panel {
+  @include opacity(0);
+  z-index: -1;
   padding: 20px;
   padding-top: 20px;
+  min-height: 100%;
+  position: relative;
   background: url(../images/dark_wood.png);
   color: #ccc;
   @include transition(all $animationTime);
@@ -215,33 +228,46 @@ body.sticky-menu {
     font-size: 11px;
   }
 
+  .content {
+    overflow-x: hidden;
+  }
+
+  &.active {
+    @include opacity(1);
+    z-index: 2;
+    @include translateX(0);
+  }
+
   // Mobile
   @include grid-span(4);
   .meta { @include grid-span(1, 1, 1 1 1 1); }
-  .content { @include grid-span(3, 2, 1 1 1 1); }
+  .content, .panel-title { @include grid-span(3, 2, 1 1 1 1); }
 
   // Small tablet
   @include breakpoint($smallTabletWidth) {
+    @include translateX(-100%);
+    margin-right: -100% !important;
+    max-width: 500px;
     padding-bottom: 0 !important;
     @include grid-span(2, 3, $smallTabletGrid);
     .meta { @include grid-span(1, 1, 1 6); }
-    .content { @include grid-span(1, 2, 1 6); }
+    .content, .panel-title { @include grid-span(1, 2, 1 6); }
   }
 
-  @include breakpoint(800px) {
+  @include breakpoint(520px) {
     float: left;
-    margin-left: 400px;
+    margin-left: 240px;
     @include box-shadow($shadow);
   }
 }
 
 @include breakpoint($smallTabletWidth) {
   body.collapsed-menu {
-    #blogs {
+    .panel {
       @include box-shadow($shadow);
       @include grid-span(2, 1, 1 6 6);
       .meta { @include grid-span(1, 1, 1 6); }
-      .content { @include grid-span(1, 2, 1 6); }
+      .content, .panel-title { @include grid-span(1, 2, 1 6); }
     }
 
     #main-menu ul.menu #switch-menu {
