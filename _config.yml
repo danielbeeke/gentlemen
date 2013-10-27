@@ -1,3 +1,20 @@
-name: Your New Jekyll Site
+name: Gentlemen
 markdown: redcarpet
 pygments: true
+
+prose:
+  rooturl: "_posts"
+  media: "images"
+  metadata:
+    app/_posts:
+      - name: "author"
+        field:
+          element: "text"
+          label: "Author"
+          value:
+            - "Tom Smit"
+      - name: "layout"
+        field:
+          element: "hidden"
+          value:
+            - "default"
