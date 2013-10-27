@@ -3,9 +3,254 @@
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 
-@import "compass/reset";
+@import "compass";
+@import "rgbapng";
+@import "singularitygs";
+@import "toolkit";
+@import "breakpoint";
 
-canvas {
-  width: 100% !important;
-  height: 100px;
+$gentleblue: #2d3e6a;
+$animationTime: .6s;
+
+$grids: 4;
+$gutters: 0;
+
+// Small tablet
+$smallTabletWidth: 420px;
+$smallTabletGrid: 3 3 1 6;
+$grids: add-grid($smallTabletGrid at $smallTabletWidth);
+
+$output: 'float';
+
+$shadow: 0 0 20px black;
+
+// @include grid-toggle;
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Gudea', sans-serif;
+}
+
+html {
+  background: black;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Dorsa', sans-serif;
+  font-size: 3em;
+  line-height: 1.5em;
+  margin: 10px 0;
+}
+
+#main-header {
+  @include grid-span(4);
+  background: url(../images/bgnoise_lg.png);
+  text-align: center;
+  max-width: 400px;
+
+  #logo {
+    img {
+      @include box-sizing(border-box);
+      padding: 20px 0;
+    }
+  }
+
+  // Small tablet
+  @include breakpoint($smallTabletWidth) {
+    @include grid-span(2, 1, $smallTabletGrid);
+    height: 100%;
+  }
+}
+
+body.sticky-menu {
+  #main-header {
+    margin-bottom: 60px;
+  }
+}
+
+@include breakpoint($smallTabletWidth) {
+  #main-header {
+    position: fixed;
+    top: 0;
+  }
+}
+
+#main-menu {
+  position: relative;
+
+  ul.menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    a:link, a:visited, a {
+      color: white;
+      background: $gentleblue;
+      float: left;
+      width: 100%;
+      padding: 10px;
+      text-decoration: none;
+      border-bottom: 1px solid white;
+      @include transition(background $animationTime, color $animationTime);
+
+      &:hover {
+        background: white;
+        color: $gentleblue;
+      }
+    }
+  }
+}
+
+// Mobile menu.
+@include breakpoint(max-width $smallTabletWidth) {
+  #main-menu {
+    overflow: hidden;
+  }
+
+  body.expanded-menu {
+    #main-menu {
+      @include transition(max-height $animationTime $animationTime, width $animationTime);
+      max-height: 400px;
+    }
+  }
+
+  body.collapsed-menu {
+    #main-menu {
+      @include transition(max-height $animationTime, width $animationTime $animationTime);
+      max-height: 40px;
+    }
+  }
+
+  body.sticky-menu {
+    #main-menu {
+      position: fixed;
+      top: 0;
+      width: 100%;
+    }
+  }
+
+  body.sticky-menu.collapsed-menu {
+    #main-header {
+      margin-bottom: 40px;
+    }
+
+    #main-menu {
+      width: 40px;
+      right: 0px;
+      li:nth-child(2) {
+        padding-top: 40px;
+      }
+      ul.menu #switch-menu {
+        width: 40px;
+        right: 0;
+        position: absolute;
+      }
+    }
+  }
+}
+
+// Tablet menu.
+@include breakpoint($smallTabletWidth) {
+  // These selectors are needed for weight.
+  #main-menu ul.menu #switch-menu {
+   position: absolute;
+   top: 0;
+   right: -40px;
+   width: 40px !important;
+   @include opacity(1);
+   @include transition(all $animationTime);
+   border-bottom: 0;
+   @include border-radius(0 5px 5px 0);
+  }
+
+  #main-header {
+    @include transition(transform $animationTime, box-shadow $animationTime);
+    @include box-shadow($shadow);
+  }
+
+  body.collapsed-menu {
+    #main-menu ul.menu #switch-menu {
+      position: fixed;
+    }
+
+    #main-header {
+      @include translateX(-100%);
+    }
+  }
+
+  body.expanded-menu {
+    #main-header {
+      @include box-shadow($shadow);
+    }
+  }
+}
+
+#blogs {
+  max-width: 400px;
+  padding: 20px;
+  padding-top: 20px;
+  background: url(../images/dark_wood.png);
+  color: #ccc;
+  @include transition(all $animationTime);
+  @include box-sizing(border-box);
+  .meta {
+    margin-top: 100px;
+    @include box-sizing(border-box);
+    font-style: italic;
+    padding-right: 20px;
+    text-align: center;
+    color: black;
+  }
+
+  a:link, a:visited {
+    color: white;
+  }
+
+  .date-wrapper {
+    background: #ccc;
+    @include border-radius(4px);
+    font-size: 11px;
+  }
+
+  // Mobile
+  @include grid-span(4);
+  .meta { @include grid-span(1, 1, 1 1 1 1); }
+  .content { @include grid-span(3, 2, 1 1 1 1); }
+
+  // Small tablet
+  @include breakpoint($smallTabletWidth) {
+    padding-bottom: 0 !important;
+    @include grid-span(2, 3, $smallTabletGrid);
+    .meta { @include grid-span(1, 1, 1 6); }
+    .content { @include grid-span(1, 2, 1 6); }
+  }
+
+  @include breakpoint(800px) {
+    float: left;
+    margin-left: 400px;
+    @include box-shadow($shadow);
+  }
+}
+
+@include breakpoint($smallTabletWidth) {
+  body.collapsed-menu {
+    #blogs {
+      @include box-shadow($shadow);
+      @include grid-span(2, 1, 1 6 6);
+      .meta { @include grid-span(1, 1, 1 6); }
+      .content { @include grid-span(1, 2, 1 6); }
+    }
+
+    #main-menu ul.menu #switch-menu {
+      @include opacity(0.4);
+    }
+  }
+}
+
+.author img {
+  overflow: hidden;
+  @include border-radius(100%);
 }

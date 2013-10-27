@@ -7,6 +7,12 @@ sass_dir = "sass"
 images_dir = "images"
 javascripts_dir = "javascripts"
 
+require "rgbapng"
+require "singularitygs"
+require "toolkit"
+require "breakpoint"
+require "sassy-buttons"
+
 # You can select your preferred output style here (can be overridden via the command line):
 # output_style = :expanded or :nested or :compact or :compressed
 

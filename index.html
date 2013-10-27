@@ -2,23 +2,38 @@
 layout: default
 title: Your New Jekyll Site
 ---
+  <header id="main-header">
+    <div id="logo">
+      <img src="/images/logo.png">
+    </div>
 
-<div id="home">
-  <h1>Blog Posts</h1>
+    <nav id="main-menu">
+      <ul class="menu">
+        <li><a href="#" id="switch-menu"><i class="fa fa-align-justify"></i></a></li>
+        <li><a class="innerlink btn" href="#songs"><i class="fa fa-music"></i> Muziek</a></li>
+        <li><a class="innerlink btn" href="#blogs"><i class="fa fa-file"></i> Blog</a></li>
+        <li><a class="innerlink btn" href="#tour"><i class="fa fa-bullhorn"></i> Optredens</a></li>
+        <li><a class="btn" href="#tour"><i class="fa fa-facebook"></i> Facebook</a></li>
+      </ul>
+    </nav>
+  </header>
 
-  <div id="songs">
-  </div>
-
-  <div class="posts">
+  <div id="blogs" class="panel">
     {% for post in site.posts %}
-      <article class="news">
-        <h3>{{ post.title }}</h3>
+      <article class="blog-item">
         <div class="meta">
-          <span class="date">{{ post.date | date_to_string }}</span>
-          <span class="author">{{ post.author }}</span>
+          <div class="author"><img src="/images/authors/{{ post.author | handleize }}.jpg" /></div>
+
+          <div class="date-wrapper">
+            <span class="day">{{ post.date | date: "%d" }}</span>
+            <span class="month">{{ post.date | date: "%b" }}</span>
+          </div>
         </div>
-        <p>{{ post.content }}</p>
+
+        <div class="content">
+          <h3>{{ post.title }}</h3>
+          <p>{{ post.content }}</p>
+        </div>
       </article>
     {% endfor %}
   </div>
-</div>

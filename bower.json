@@ -14,6 +14,7 @@
   ],
   "dependencies": {
     "jquery": "~2.0.3",
-    "twig.js": "~0.5.12"
+    "twig.js": "~0.5.12",
+    "jquery-backstretch": "~2.0.4"
   }
 }
