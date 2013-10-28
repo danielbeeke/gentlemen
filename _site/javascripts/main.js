@@ -41,6 +41,8 @@
           $(id).addClass('active')
         }
 
+        $.backstretch("next")
+
         return false
       })
     },

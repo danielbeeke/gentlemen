@@ -21,21 +21,23 @@ title: Gentlemen
   <div id="blogs" class="panel active">
     <h2 class="panel-title">Blog</h2>
     {% for post in site.posts %}
-      <article class="blog-item">
-        <div class="meta">
-          <div class="author"><img src="images/authors/{{ post.author | handleize }}.jpg" /></div>
+      {% if post.layout == 'post' %}
+        <article class="blog-item">
+          <div class="meta">
+            <div class="author"><img src="images/authors/{{ post.author | handleize }}.jpg" /></div>
 
-          <div class="date-wrapper">
-            <span class="day">{{ post.date | date: "%d" }}</span>
-            <span class="month">{{ post.date | date: "%b" }}</span>
+            <div class="date-wrapper">
+              <span class="day">{{ post.date | date: "%d" }}</span>
+              <span class="month">{{ post.date | date: "%b" }}</span>
+            </div>
           </div>
-        </div>
 
-        <div class="content">
-          <h3>{{ post.title }}</h3>
-          <p>{{ post.content }}</p>
-        </div>
-      </article>
+          <div class="content">
+            <h3>{{ post.title }}</h3>
+            <p>{{ post.content }}</p>
+          </div>
+        </article>
+      {% endif %}
     {% endfor %}
   </div>
 
@@ -45,4 +47,21 @@ title: Gentlemen
 
   <div id="tour" class="panel">
     <h2 class="panel-title">Optredens</h2>
+    {% for post in site.posts %}
+      {% if post.layout == 'concert' %}
+        <article class="blog-item">
+          <div class="meta">
+            <div class="date-wrapper">
+              <span class="day">{{ post.date | date: "%d" }}</span>
+              <span class="month">{{ post.date | date: "%b" }}</span>
+            </div>
+          </div>
+
+          <div class="content">
+            <h3>{{ post.title }}</h3>
+            <p>{{ post.content }}</p>
+          </div>
+        </article>
+      {% endif %}
+    {% endfor %}
   </div>
