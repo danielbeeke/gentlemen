@@ -9,6 +9,10 @@
       user: '101483921397620996759',
       albumId: '5939519178061989441',
       authKey: 'Gv1sRgCPOg19a6sv2kYA'
+    },
+    facebook: {
+      appId: '416165065177712',
+      accessToken: '416165065177712|8xxchCfRQlqeD4IDfC56eJH24Wo'
     }
   }
 
@@ -16,7 +20,7 @@
     // Init.
     init: function () {
       functions.getPicasaFeedToBackstretch()
-      // functions.initSoundCloud()
+      functions.initFacebook()
       functions.initMenu()
       functions.initScroller()
     },
@@ -99,6 +103,17 @@
           functions.initBackstretch(photos)
         }
       })
+    },
+    initFacebook: function () {
+
+      $.getJSON('https://graph.facebook.com/gentlemenmusicnl/events?access_token=' + settings.facebook.accessToken, function (json) {
+        console.log(json.data)
+      })
+
+      $.getJSON('https://graph.facebook.com/gentlemenmusicnl/posts?access_token=' + settings.facebook.accessToken, function (json) {
+        console.log(json.data)
+      })
+
     },
     initSoundCloud: function () {
       $.getScript('http://connect.soundcloud.com/sdk.js', function () {
