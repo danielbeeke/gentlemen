@@ -1,5 +1,5 @@
 {
-  "name": "gentlemen",
+  "name": "gentlemen2",
   "version": "0.0.0",
   "authors": [
     "danielbeeke <daniel.beek.e@gmail.com>"
@@ -13,8 +13,11 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": "~2.0.3",
+    "jquery": "~1.10.2",
+    "sass-bootstrap": "~3.0.0",
+    "modernizr": "~2.6.2",
     "twig.js": "~0.5.12",
-    "jquery-backstretch": "~2.0.4"
+    "jquery-backstretch": "~2.0.4",
+    "momentjs": "~2.4.0"
   }
 }
